@@ -10,19 +10,8 @@ export default function Home() {
   const [code, setCode] = useState('')
   const [output, setOutput] = useState('')
 
-  const compile = async () => {
-    const req = await fetch('/api/internal/compile', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ code }),
-    })
-    const result = await req.json()
-    setOutput(JSON.stringify(result, null, '  '))
-  }
-  const execute = async () => {
-    const req = await fetch('/api/internal/vm-execute', {
+  const run = async () => {
+    const req = await fetch('/api/run', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -37,8 +26,7 @@ export default function Home() {
     <div>
       <Title>My page</Title>
       <textarea value={code} onChange={(e: any) => setCode(e.target.value)} />
-      <button onClick={compile}>Compile</button>
-      <button onClick={execute}>Execute</button>
+      <button onClick={run}>Run</button>
       <pre>{output}</pre>
     </div>
   );
