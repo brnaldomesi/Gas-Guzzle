@@ -6,11 +6,7 @@ import VM from '@ethereumjs/vm'
 const common = new Common({ chain: 'mainnet' })
 const vm = new VM({ common })
 
-type Data = {
-  name: string
-}
-
-export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export default (req: NextApiRequest, res: NextApiResponse) => {
   vm.runCode({
     code: Buffer.from(req.body.code, 'hex'),
     gasLimit: new BN(0xffffffff),

@@ -2,11 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import solc from 'solc'
 import 'solc/soljson-v0.6.12+commit.27d51765'
 
-type Data = {
-  name: string
-}
-
-export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export default (req: NextApiRequest, res: NextApiResponse) => {
   const input = {
     language: 'Solidity',
     sources: {
